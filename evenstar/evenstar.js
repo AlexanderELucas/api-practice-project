@@ -1,31 +1,3 @@
-// const getRingQuotes = async () => {
-//     const response = await fetch('https://the-one-api.dev/v2/quote', {
-//       method: 'GET',
-//       headers: {
-//         'Authorization': 'Bearer CmkXiu-kKWUMkd845GoG'
-//       }
-//     });
-//     console.log(response);
-
-//     const ringQuotes = await response.json();
-//     //select random quote
-//     const quote = ringQuotes.docs[Math.floor(Math.random() * ringQuotes.docs.length)];
-//     const quoteCharacterID = quote.character;
-//     const quoteDialog = quote.dialog;
-//     const quoteMovieID = quote.movie;
-//     console.log(quote);
-//     console.log(`characterID:${quoteCharacterID} quote:${quoteDialog} movie:${quoteMovieID}`);
-//     getRingCharacter(quoteCharacterID);
-//     getRingMovie(quoteMovieID);
-
-//     //Display quote character and movie in console
-//     console.log(`"${quoteDialog}" characterID:${quoteCharacterID} quote:${quoteDialog} movie:${quoteMovieID}`);
-
-// }
-
-
-
-
 class RingAttributes {
     //character
     getRingCharacter = async (characterID) => {
@@ -39,7 +11,7 @@ class RingAttributes {
         //select name from array
         const characterName = ringCharacters.docs[0].name;
         
-        console.log('- ' + characterName);
+        //console.log('- ' + characterName);
 
 
         //at character to display
@@ -73,7 +45,7 @@ class RingAttributes {
         //select name from array
         const movieTitle = ringMovie.docs[0].name;
         
-        console.log('from ' + movieTitle);
+        //console.log('from ' + movieTitle);
 
         //add movie to UI
         const uiQuoteLocation = document.getElementById('quote-location');
@@ -96,17 +68,17 @@ class RingAttributes {
 //event listener for quote button  elem id ring-btn
 document.getElementById('ring-btn').addEventListener('click', async function(e) {
     const attributes = new RingAttributes;
-    console.log("button has been pressed");
     const response = await fetch('https://the-one-api.dev/v2/quote', {
       method: 'GET',
       headers: {
         'Authorization': 'Bearer CmkXiu-kKWUMkd845GoG'
       }
     });
-    console.log(response);
+    //console.log(response);
 
     const ringQuotes = await response.json();
     //select random quote
+    //console.log(ringQuotes.docs);
     const quote = ringQuotes.docs[Math.floor(Math.random() * ringQuotes.docs.length)];
     const quoteCharacterID = quote.character;
     const quoteDialog = quote.dialog.toUpperCase();
@@ -123,7 +95,7 @@ document.getElementById('ring-btn').addEventListener('click', async function(e) 
 
     const quoteText = document.createElement('div');
     quoteText.setAttribute('id', 'quote');
-    quoteText.setAttribute('class', 'quote order-1 align-self-center');
+    quoteText.setAttribute('class', 'quote d-flex order-1 align-self-center');
     quoteText.innerHTML =`
         <h1>${quoteDialog}</h1>
         `;
@@ -132,15 +104,13 @@ document.getElementById('ring-btn').addEventListener('click', async function(e) 
 
 
 
-    console.log(quote);
-    console.log(`characterID:${quoteCharacterID} quote:${quoteDialog} movie:${quoteMovieID}`);
+    //console.log(quote);
+    //console.log(`characterID:${quoteCharacterID} quote:${quoteDialog} movie:${quoteMovieID}`);
     attributes.getRingCharacter(quoteCharacterID);
     attributes.getRingMovie(quoteMovieID);
 
-    console.log(attributes.getRingCharacter());
-
     //Display quote character and movie in console
-    console.log(`"${quoteDialog}" characterID:${quoteCharacterID} quote:${quoteDialog} movie:${quoteMovieID}`);
+    //console.log(`"${quoteDialog}" characterID:${quoteCharacterID} quote:${quoteDialog} movie:${quoteMovieID}`);
     
     
     
