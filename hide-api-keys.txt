@@ -1,0 +1,9 @@
+How to hide API keys
+
+Don't push API keys to github, some bots are searching for expensive keys to use them for free on your account
+You also don't want to store it on a file and add it in the git ignore
+
+
+there are packages called
+.env files  =  "environment" files
+
